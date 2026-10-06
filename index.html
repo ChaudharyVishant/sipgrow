@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIP Calculator with Step-Up – See How Your Monthly Investment Grows</title>
+<meta name="description" content="Free SIP calculator with yearly step-up. Enter your monthly investment, expected return and years to see your final corpus, total invested and gains.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = { theme: { extend: {
+  colors: { ink:'#12332B', sage:'#F1F5F2', leaf:'#1F7A5C', gold:'#F2B134', mist:'#DDE7E1' },
+  fontFamily: { display:['Bricolage Grotesque','system-ui','sans-serif'], body:['Inter','system-ui','sans-serif'] }
+}}}
+</script>
+<!-- PASTE YOUR ADSENSE SCRIPT HERE (inside <head>):
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
+<style>
+  body{font-family:Inter,system-ui,sans-serif}
+  h1,h2,h3,.font-display{font-family:'Bricolage Grotesque',system-ui,sans-serif}
+  input[type=range]{accent-color:#1F7A5C;width:100%}
+  .ad-slot{display:flex;align-items:center;justify-content:center;text-align:center;border:1.5px dashed #9DB5A9;background:repeating-linear-gradient(45deg,#F7FAF8,#F7FAF8 10px,#EEF4F0 10px,#EEF4F0 20px);color:#5E7A6D;border-radius:.75rem;font-size:.8rem}
+  .bar{transition:height .25s ease}
+  :focus-visible{outline:3px solid #F2B134;outline-offset:2px}
+  @media (prefers-reduced-motion:reduce){.bar{transition:none}}
+</style>
+</head>
+<body class="bg-sage text-ink antialiased">
+
+<header class="bg-ink text-white">
+  <div class="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
+    <span class="font-display font-bold text-xl">SIP<span class="text-gold">Grow</span></span>
+    <span class="text-sm text-white/70 hidden sm:block">Free calculator, no sign-up</span>
+  </div>
+</header>
+
+<main class="max-w-5xl mx-auto px-4 py-8">
+
+  <!-- AD SLOT 1: top leaderboard (728x90 desktop / responsive on mobile) -->
+  <div id="ad-top" class="ad-slot min-h-[90px] mb-8">
+    <div>
+      <strong>Ad space: top banner</strong><br>
+      Replace this whole inner &lt;div&gt; with your AdSense &lt;ins&gt; tag or banner image
+    </div>
+  </div>
+
+  <section class="mb-8">
+    <h1 class="text-3xl sm:text-5xl font-extrabold leading-tight">What will your monthly SIP be worth?</h1>
+    <p class="mt-3 text-lg text-ink/75 max-w-2xl">Move the sliders. Add a yearly step-up to see how raising your SIP as your income grows changes the end result.</p>
+  </section>
+
+  <div class="grid lg:grid-cols-3 gap-6">
+
+    <!-- Calculator -->
+    <section class="lg:col-span-2 bg-white rounded-2xl p-5 sm:p-8 shadow-sm border border-mist" aria-label="SIP calculator">
+      <div class="grid sm:grid-cols-2 gap-x-8 gap-y-6">
+        <div>
+          <label for="amt" class="flex justify-between font-semibold">Monthly investment
+            <span class="flex items-center gap-1 text-leaf"><span id="cur">₹</span><input id="amtNum" type="number" min="500" step="500" class="w-24 text-right border-b border-mist focus:outline-none bg-transparent"></span></label>
+          <input id="amt" type="range" min="500" max="200000" step="500" value="10000" class="mt-3">
+        </div>
+        <div>
+          <label for="ret" class="flex justify-between font-semibold">Expected return (yearly)
+            <span class="text-leaf"><span id="retV">12</span>%</span></label>
+          <input id="ret" type="range" min="1" max="30" step="0.5" value="12" class="mt-3">
+        </div>
+        <div>
+          <label for="yrs" class="flex justify-between font-semibold">Time period
+            <span class="text-leaf"><span id="yrsV">15</span> years</span></label>
+          <input id="yrs" type="range" min="1" max="40" step="1" value="15" class="mt-3">
+        </div>
+        <div>
+          <label for="step" class="flex justify-between font-semibold">Yearly step-up
+            <span class="text-leaf"><span id="stepV">0</span>%</span></label>
+          <input id="step" type="range" min="0" max="25" step="1" value="0" class="mt-3">
+        </div>
+      </div>
+
+      <div class="mt-4 flex items-center gap-2 text-sm">
+        <label for="cursel" class="text-ink/70">Currency</label>
+        <select id="cursel" class="border border-mist rounded-lg px-2 py-1 bg-white">
+          <option value="₹|en-IN">₹ Rupee</option>
+          <option value="$|en-US">$ Dollar</option>
+          <option value="€|de-DE">€ Euro</option>
+          <option value="£|en-GB">£ Pound</option>
+        </select>
+      </div>
+
+      <div class="mt-8 grid sm:grid-cols-3 gap-4">
+        <div class="rounded-xl bg-sage p-4"><p class="text-sm text-ink/70">Total invested</p><p id="rInv" class="font-display text-2xl font-bold mt-1">–</p></div>
+        <div class="rounded-xl bg-sage p-4"><p class="text-sm text-ink/70">Estimated gains</p><p id="rGain" class="font-display text-2xl font-bold mt-1 text-leaf">–</p></div>
+        <div class="rounded-xl bg-ink text-white p-4"><p class="text-sm text-white/70">Final value</p><p id="rTot" class="font-display text-2xl font-bold mt-1 text-gold">–</p></div>
+      </div>
+
+      <h2 class="mt-8 font-semibold">Year-by-year growth</h2>
+      <div class="mt-3 flex items-end gap-[3px] h-44 border-b border-mist" id="chart" role="img" aria-label="Bar chart of invested amount and gains per year"></div>
+      <div class="mt-2 flex gap-4 text-xs text-ink/70">
+        <span class="flex items-center gap-1"><i class="inline-block w-3 h-3 rounded-sm bg-ink"></i>Invested</span>
+        <span class="flex items-center gap-1"><i class="inline-block w-3 h-3 rounded-sm bg-gold"></i>Gains</span>
+      </div>
+    </section>
+
+    <!-- Sidebar -->
+    <aside class="space-y-6 lg:sticky lg:top-6 self-start">
+      <!-- AD SLOT 2: sidebar rectangle (300x250) -->
+      <div id="ad-side" class="ad-slot min-h-[250px]">
+        <div><strong>Ad space: 300×250</strong><br>Paste AdSense unit here</div>
+      </div>
+
+      <!-- AFFILIATE SLOT: swap for a broker, mutual fund app or finance book link -->
+      <div id="affiliate" class="rounded-2xl p-5 bg-white border-2 border-gold">
+        <p class="text-xs text-ink/60">Sponsored</p>
+        <h3 class="font-display font-bold text-lg mt-1">Your affiliate offer title</h3>
+        <p class="text-sm text-ink/75 mt-1">One line on why this helps someone who just ran a SIP calculation.</p>
+        <a href="#" rel="sponsored noopener" target="_blank" class="mt-4 inline-block w-full text-center bg-ink text-white font-semibold rounded-xl py-3 hover:bg-leaf">Button text</a>
+      </div>
+    </aside>
+  </div>
+
+  <!-- AD SLOT 3: in-content, after the calculator -->
+  <div id="ad-mid" class="ad-slot min-h-[120px] my-8">
+    <div><strong>Ad space: in-content banner</strong><br>Responsive display ad goes here</div>
+  </div>
+
+  <!-- SEO content: Google needs real text to rank the tool and AdSense needs it for approval -->
+  <section class="bg-white rounded-2xl p-5 sm:p-8 border border-mist max-w-3xl">
+    <h2 class="text-2xl font-bold">How a SIP calculator works</h2>
+    <p class="mt-3 leading-relaxed text-ink/85">A SIP (Systematic Investment Plan) invests a fixed amount every month. Each instalment grows from the day it is invested, so early instalments earn the most. This calculator uses the standard future-value formula with monthly compounding, and the yearly step-up raises your instalment by a set percentage each year.</p>
+    <h3 class="mt-6 text-lg font-bold">Frequently asked questions</h3>
+    <details class="mt-3 border-t border-mist pt-3"><summary class="font-semibold cursor-pointer">What return rate should I enter?</summary>
+      <p class="mt-2 text-ink/80">Nobody can predict returns. Use a cautious number and test a few: try 8%, 10% and 12% to see the range.</p></details>
+    <details class="mt-3 border-t border-mist pt-3"><summary class="font-semibold cursor-pointer">What is a step-up SIP?</summary>
+      <p class="mt-2 text-ink/80">You increase your monthly amount by a fixed percentage every year, for example 10%, so your investment keeps pace with your income.</p></details>
+    <details class="mt-3 border-t border-mist pt-3"><summary class="font-semibold cursor-pointer">Are these results guaranteed?</summary>
+      <p class="mt-2 text-ink/80">No. Market-linked returns vary. The results are estimates for planning, not financial advice.</p></details>
+  </section>
+</main>
+
+<footer class="bg-ink text-white/70 mt-12">
+  <div class="max-w-5xl mx-auto px-4 py-8 text-sm">
+    <p>Estimates only. Not financial advice. Returns on market-linked investments are not guaranteed.</p>
+    <p class="mt-2"><a href="#" class="underline">Privacy Policy</a> · <a href="#" class="underline">Contact</a> · <a href="#" class="underline">About</a></p>
+  </div>
+</footer>
+
+<script>
+const $ = id => document.getElementById(id);
+let cur = '₹', loc = 'en-IN';
+const fmt = n => cur + Math.round(n).toLocaleString(loc);
+
+function calc(){
+  const P = +$('amt').value, r = +$('ret').value, y = +$('yrs').value, s = +$('step').value;
+  $('amtNum').value = P; $('retV').textContent = r; $('yrsV').textContent = y; $('stepV').textContent = s;
+  const mr = r/100/12;
+  let bal = 0, inv = 0, pay = P, rows = [];
+  for (let yr = 1; yr <= y; yr++){
+    for (let m = 0; m < 12; m++){ bal = (bal + pay) * (1 + mr); inv += pay; }
+    rows.push({inv, bal});
+    pay = pay * (1 + s/100);
+  }
+  $('rInv').textContent = fmt(inv);
+  $('rGain').textContent = fmt(bal - inv);
+  $('rTot').textContent = fmt(bal);
+  const max = rows[rows.length-1].bal;
+  $('chart').innerHTML = rows.map((o,i) => {
+    const hi = (o.inv/max)*100, hg = Math.max(0,((o.bal-o.inv)/max)*100);
+    return `<div class="flex-1 flex flex-col justify-end h-full" title="Year ${i+1}: ${fmt(o.bal)}">
+      <div class="bar bg-gold rounded-t-sm" style="height:${hg}%"></div>
+      <div class="bar bg-ink" style="height:${hi}%"></div></div>`;
+  }).join('');
+}
+['amt','ret','yrs','step'].forEach(id => $(id).addEventListener('input', calc));
+$('amtNum').addEventListener('input', e => { $('amt').value = Math.min(Math.max(+e.target.value||0,500),200000); calc(); });
+$('cursel').addEventListener('change', e => { [cur, loc] = e.target.value.split('|'); $('cur').textContent = cur; calc(); });
+calc();
+</script>
+</body>
+</html>
