@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta name="google-site-verification" content="FhMmtFeXsiyp9Q_rEOTQhvUTk8wn7w4J5Ytqvfsxnas" />
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lumpsum Calculator - See What a One-Time Investment Grows To</title>
+<meta name="description" content="Free lumpsum calculator. Enter a one-time investment, expected yearly return and years to see your final value and total gains.">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{colors:{ink:'#12332B',sage:'#F1F5F2',leaf:'#1F7A5C',gold:'#F2B134',mist:'#DDE7E1'}}}}</script>
+<style>body{font-family:Inter,system-ui,sans-serif}h1,h2,h3,.font-display{font-family:'Bricolage Grotesque',system-ui,sans-serif}input[type=range]{accent-color:#1F7A5C;width:100%}:focus-visible{outline:3px solid #F2B134;outline-offset:2px}</style>
+</head><body class="bg-sage text-ink antialiased">
+<header class="bg-ink text-white"><div class="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
+<a href="index.html" class="font-display font-bold text-xl">SIP<span class="text-gold">Grow</span></a>
+<nav class="text-sm flex gap-4"><a href="index.html" class="underline">SIP Calculator</a><a href="tracker.html" class="text-gold underline">SIP Tracker</a></nav></div></header>
+<main class="max-w-3xl mx-auto px-4 py-8">
+<h1 class="text-3xl sm:text-5xl font-extrabold leading-tight">What will your one-time investment be worth?</h1>
+<p class="mt-3 text-lg text-ink/75">Enter the amount you invest once, the yearly return you expect, and how many years you will stay invested.</p>
+<section class="mt-6 bg-white rounded-2xl p-5 sm:p-8 border border-mist" aria-label="Lumpsum calculator">
+<div class="grid sm:grid-cols-3 gap-6">
+<div><label for="a" class="font-semibold text-sm">Investment amount (₹)</label><input id="a" type="number" min="1000" step="1000" value="100000" class="mt-2 w-full border border-mist rounded-lg px-3 py-2"></div>
+<div><label for="r" class="flex justify-between font-semibold text-sm">Expected return (yearly)<span class="text-leaf"><span id="rv">12</span>%</span></label><input id="r" type="range" min="1" max="30" step="0.5" value="12" class="mt-3"></div>
+<div><label for="y" class="flex justify-between font-semibold text-sm">Time period<span class="text-leaf"><span id="yv">10</span> years</span></label><input id="y" type="range" min="1" max="40" step="1" value="10" class="mt-3"></div></div>
+<div class="mt-8 grid sm:grid-cols-3 gap-4">
+<div class="rounded-xl bg-sage p-4"><p class="text-sm text-ink/70">Amount invested</p><p id="o1" class="font-display text-2xl font-bold mt-1">-</p></div>
+<div class="rounded-xl bg-sage p-4"><p class="text-sm text-ink/70">Estimated gains</p><p id="o2" class="font-display text-2xl font-bold mt-1 text-leaf">-</p></div>
+<div class="rounded-xl bg-ink text-white p-4"><p class="text-sm text-white/70">Final value</p><p id="o3" class="font-display text-2xl font-bold mt-1 text-gold">-</p></div></div></section>
+<section class="mt-8 bg-white rounded-2xl p-5 sm:p-8 border border-mist">
+<h2 class="text-2xl font-bold">How a lumpsum calculator works</h2>
+<p class="mt-3 leading-relaxed text-ink/85">A lumpsum investment means you invest one big amount at once, instead of a small amount every month like a SIP. The money then grows with compounding: each year, your gains also start earning returns. This calculator uses the standard formula: final value = amount × (1 + yearly return) raised to the number of years.</p>
+<h3 class="mt-6 text-lg font-bold">Example: ₹1,00,000 for 10 years</h3>
+<p class="mt-2 leading-relaxed text-ink/85">If you invest ₹1,00,000 once and it grows at 12% a year, after 10 years it becomes about ₹3.1 lakh. Your gain is about ₹2.1 lakh. After 20 years the same amount becomes about ₹9.6 lakh. Waiting longer matters more than most people expect.</p>
+<h3 class="mt-6 text-lg font-bold">Lumpsum or SIP?</h3>
+<p class="mt-2 leading-relaxed text-ink/85">A lumpsum works when you already have a large amount, for example a bonus or savings. A SIP works when you invest from your monthly income. Markets go up and down, so a lumpsum made at a market peak can feel painful for a while. Many people invest a lumpsum in parts over a few months. You can compare both with our <a class="underline text-leaf font-semibold" href="index.html">SIP calculator</a>.</p>
+<h3 class="mt-6 text-lg font-bold">Frequently asked questions</h3>
+<details class="mt-3 border-t border-mist pt-3"><summary class="font-semibold cursor-pointer">What return should I enter?</summary><p class="mt-2 text-ink/80">Nobody can predict returns. Try a few cautious numbers such as 8%, 10% and 12% to see a range.</p></details>
+<details class="mt-3 border-t border-mist pt-3"><summary class="font-semibold cursor-pointer">Are the results guaranteed?</summary><p class="mt-2 text-ink/80">No. Market-linked returns change every year. These are estimates for planning, not financial advice.</p></details>
+<details class="mt-3 border-t border-mist pt-3"><summary class="font-semibold cursor-pointer">Does it include tax and fund charges?</summary><p class="mt-2 text-ink/80">No. Tax and expense charges lower your real return, so choose a slightly lower return rate to be safe.</p></details>
+</section></main>
+<footer class="bg-ink text-white/70 mt-12"><div class="max-w-5xl mx-auto px-4 py-8 text-sm">
+<p>Estimates only. Not financial advice. Returns on market-linked investments are not guaranteed.</p>
+<p class="mt-2"><a href="privacy.html" class="underline">Privacy Policy</a> · <a href="contact.html" class="underline">Contact</a> · <a href="about.html" class="underline">About</a></p></div></footer>
+<script>
+const $=i=>document.getElementById(i),f=n=>'₹'+Math.round(n).toLocaleString('en-IN');
+function c(){const P=Math.max(+$('a').value||0,0),r=+$('r').value,y=+$('y').value;$('rv').textContent=r;$('yv').textContent=y;const t=P*Math.pow(1+r/100,y);$('o1').textContent=f(P);$('o2').textContent=f(t-P);$('o3').textContent=f(t)}
+['a','r','y'].forEach(i=>$(i).addEventListener('input',c));c();
+</script></body></html>
