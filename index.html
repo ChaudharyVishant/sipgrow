@@ -32,14 +32,14 @@ tailwind.config = { theme: { extend: {
 <header class="bg-ink text-white">
   <div class="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
     <span class="font-display font-bold text-xl">SIP<span class="text-gold">Grow</span></span>
-    <span class="text-sm text-white/70 hidden sm:block">Free calculator, no sign-up</span>
+    <a href="tracker.html" class="text-sm font-semibold text-gold underline">SIP Tracker</a>
   </div>
 </header>
 
 <main class="max-w-5xl mx-auto px-4 py-8">
 
   <!-- AD SLOT 1: top leaderboard (728x90 desktop / responsive on mobile) -->
-  <div id="ad-top" class="ad-slot min-h-[90px] mb-8">
+  <div id="ad-top" style="display:none" class="ad-slot min-h-[90px] mb-8">
     <div>
       <strong>Ad space: top banner</strong><br>
       Replace this whole inner &lt;div&gt; with your AdSense &lt;ins&gt; tag or banner image
@@ -105,12 +105,12 @@ tailwind.config = { theme: { extend: {
     <!-- Sidebar -->
     <aside class="space-y-6 lg:sticky lg:top-6 self-start">
       <!-- AD SLOT 2: sidebar rectangle (300x250) -->
-      <div id="ad-side" class="ad-slot min-h-[250px]">
+      <div id="ad-side" style="display:none" class="ad-slot min-h-[250px]">
         <div><strong>Ad space: 300×250</strong><br>Paste AdSense unit here</div>
       </div>
 
       <!-- AFFILIATE SLOT: swap for a broker, mutual fund app or finance book link -->
-      <div id="affiliate" class="rounded-2xl p-5 bg-white border-2 border-gold">
+      <div id="affiliate" style="display:none" class="rounded-2xl p-5 bg-white border-2 border-gold">
         <p class="text-xs text-ink/60">Sponsored</p>
         <h3 class="font-display font-bold text-lg mt-1">Your affiliate offer title</h3>
         <p class="text-sm text-ink/75 mt-1">One line on why this helps someone who just ran a SIP calculation.</p>
@@ -120,7 +120,7 @@ tailwind.config = { theme: { extend: {
   </div>
 
   <!-- AD SLOT 3: in-content, after the calculator -->
-  <div id="ad-mid" class="ad-slot min-h-[120px] my-8">
+  <div id="ad-mid" style="display:none" class="ad-slot min-h-[120px] my-8">
     <div><strong>Ad space: in-content banner</strong><br>Responsive display ad goes here</div>
   </div>
 
@@ -128,6 +128,12 @@ tailwind.config = { theme: { extend: {
   <section class="bg-white rounded-2xl p-5 sm:p-8 border border-mist max-w-3xl">
     <h2 class="text-2xl font-bold">How a SIP calculator works</h2>
     <p class="mt-3 leading-relaxed text-ink/85">A SIP (Systematic Investment Plan) invests a fixed amount every month. Each instalment grows from the day it is invested, so early instalments earn the most. This calculator uses the standard future-value formula with monthly compounding, and the yearly step-up raises your instalment by a set percentage each year.</p>
+    <h3 class="mt-6 text-lg font-bold">Example: ₹10,000 a month for 15 years</h3>
+    <p class="mt-2 leading-relaxed text-ink/85">Say you invest ₹10,000 every month for 15 years and your money grows at 12% a year. You put in ₹18 lakh in total. At the end, the estimated value is about ₹50 lakh, so roughly ₹32 lakh comes from growth. That growth is compounding: your gains also start earning gains. Try the same numbers above, then add a 10% yearly step-up and watch the final value jump.</p>
+    <h3 class="mt-6 text-lg font-bold">The formula in simple words</h3>
+    <p class="mt-2 leading-relaxed text-ink/85">Each month, the calculator adds your instalment to the balance and then applies one month of growth (yearly return divided by 12). It repeats this for every month of your plan. With a step-up, your instalment becomes bigger at the start of each new year.</p>
+    <h3 class="mt-6 text-lg font-bold">Tips to get more from your SIP</h3>
+    <p class="mt-2 leading-relaxed text-ink/85">Start early, because time matters more than amount. Keep investing when markets fall, since you buy more units at lower prices. Raise your SIP whenever your income rises. Check the plan once or twice a year, not every day. You can also record your own SIPs on our <a class="underline text-leaf font-semibold" href="tracker.html">SIP Tracker</a> page.</p>
     <h3 class="mt-6 text-lg font-bold">Frequently asked questions</h3>
     <details class="mt-3 border-t border-mist pt-3"><summary class="font-semibold cursor-pointer">What return rate should I enter?</summary>
       <p class="mt-2 text-ink/80">Nobody can predict returns. Use a cautious number and test a few: try 8%, 10% and 12% to see the range.</p></details>
@@ -135,13 +141,17 @@ tailwind.config = { theme: { extend: {
       <p class="mt-2 text-ink/80">You increase your monthly amount by a fixed percentage every year, for example 10%, so your investment keeps pace with your income.</p></details>
     <details class="mt-3 border-t border-mist pt-3"><summary class="font-semibold cursor-pointer">Are these results guaranteed?</summary>
       <p class="mt-2 text-ink/80">No. Market-linked returns vary. The results are estimates for planning, not financial advice.</p></details>
+    <details class="mt-3 border-t border-mist pt-3"><summary class="font-semibold cursor-pointer">SIP or lumpsum: which is better?</summary>
+      <p class="mt-2 text-ink/80">A SIP suits people who earn monthly, because it spreads your buying across many months. A lumpsum suits money you already have. Many people do both.</p></details>
+    <details class="mt-3 border-t border-mist pt-3"><summary class="font-semibold cursor-pointer">Does this calculator include tax or fund charges?</summary>
+      <p class="mt-2 text-ink/80">No. Tax and expense charges reduce your real return, so choose a slightly lower return rate to stay safe.</p></details>
   </section>
 </main>
 
 <footer class="bg-ink text-white/70 mt-12">
   <div class="max-w-5xl mx-auto px-4 py-8 text-sm">
     <p>Estimates only. Not financial advice. Returns on market-linked investments are not guaranteed.</p>
-    <p class="mt-2"><a href="#" class="underline">Privacy Policy</a> · <a href="#" class="underline">Contact</a> · <a href="#" class="underline">About</a></p>
+    <p class="mt-2"><a href="privacy.html" class="underline">Privacy Policy</a> · <a href="contact.html" class="underline">Contact</a> · <a href="about.html" class="underline">About</a> · <a href="tracker.html" class="underline">SIP Tracker</a></p>
   </div>
 </footer>
 
@@ -151,8 +161,9 @@ let cur = '₹', loc = 'en-IN';
 const fmt = n => cur + Math.round(n).toLocaleString(loc);
 
 function calc(){
-  const P = +$('amt').value, r = +$('ret').value, y = +$('yrs').value, s = +$('step').value;
-  $('amtNum').value = P; $('retV').textContent = r; $('yrsV').textContent = y; $('stepV').textContent = s;
+  const typing = document.activeElement === $('amtNum');
+  const P = typing ? Math.min(Math.max(+$('amtNum').value||0,500),200000) : +$('amt').value, r = +$('ret').value, y = +$('yrs').value, s = +$('step').value;
+  if(!typing) $('amtNum').value = P; $('retV').textContent = r; $('yrsV').textContent = y; $('stepV').textContent = s;
   const mr = r/100/12;
   let bal = 0, inv = 0, pay = P, rows = [];
   for (let yr = 1; yr <= y; yr++){
@@ -172,7 +183,8 @@ function calc(){
   }).join('');
 }
 ['amt','ret','yrs','step'].forEach(id => $(id).addEventListener('input', calc));
-$('amtNum').addEventListener('input', e => { $('amt').value = Math.min(Math.max(+e.target.value||0,500),200000); calc(); });
+$('amtNum').addEventListener('input', () => { $('amt').value = Math.min(Math.max(+$('amtNum').value||0,500),200000); calc(); });
+$('amtNum').addEventListener('blur', () => { $('amtNum').value = Math.min(Math.max(+$('amtNum').value||500,500),200000); $('amt').value = $('amtNum').value; calc(); });
 $('cursel').addEventListener('change', e => { [cur, loc] = e.target.value.split('|'); $('cur').textContent = cur; calc(); });
 calc();
 </script>
